@@ -1,0 +1,12 @@
+
+
+#FooterWraper{
+    background-color: aqua;
+    height: 10%;
+    /* margin-top: -100px;
+    clear: both; */
+    width: 100%;
+    /* position: absolute; */
+    
+    bottom: 0;
+}

@@ -1,0 +1,43 @@
+#HeaderWraper {
+    background-color: white;
+    height: 100px;
+    padding: 0 10px;
+    /* padding-top: 3%; */
+}
+
+#menu {
+    
+    margin-top: 3%;
+    float:right;
+    
+}
+
+#menu li {
+    display: inline-block;
+    margin: 0 10px;
+    font-weight: 750;
+}
+
+#RespMenu{
+
+    
+    float: right;
+    color: black;
+    font-size: 25px;
+    display: none;
+    margin: 5% 7%;
+    cursor: pointer;
+
+}
+
+@media only screen and (max-width: 750px){
+
+    #menu {
+        display: none;
+    }
+
+    #RespMenu {
+        display: block;
+    }
+
+}
