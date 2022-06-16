@@ -75,9 +75,10 @@
 
 #sec-2{
 
-    height: 400px;
+    min-height: 400px;
     background-color: brown;
     color: white;
+    padding: 5% 4%;
 }
 
 
@@ -89,3 +90,17 @@
     text-decoration: none;
 }
 
+#right-col {
+    
+    text-align: justify;
+}
+
+
+@media(max-width: 850px){
+
+    #left-col{
+        margin-bottom: 10%;
+    }
+    
+
+}

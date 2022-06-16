@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
@@ -6,13 +6,14 @@ import { MainService } from 'src/app/services/main.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   constructor(private service: MainService) { }
 
   menuStatus:boolean = false;
-  mainLine:string='';
+  backgroundImageLine:string='';
   firstParagraph:string='';
+  sideParagraph:string='';
   
   
   ngOnInit(): void {
@@ -22,16 +23,17 @@ export class MainComponent implements OnInit {
       this.menuStatus=data;
     });
 
-    this.getMainLine();
+    this.getBackgroundImageLine();
     this.getFirstParagraph();
+    this.getSideParagraph();
 
   }
 
-  getMainLine(){
-    return this.service.getMainLine().subscribe({
-      next: (data)=> this.mainLine=data,
-      error: (er)=> {this.mainLine='Error from server'; 
-      console.log('Main line error '+er)}
+  getBackgroundImageLine(){
+    return this.service.getBackgroundImageLine().subscribe({
+      next: (data)=> this.backgroundImageLine = data,
+      error: (er)=> {this.backgroundImageLine ='Error from server'; 
+      console.log('Background image headline error '+er)}
 
   });
   }
@@ -39,9 +41,29 @@ export class MainComponent implements OnInit {
   getFirstParagraph(){
       return this.service.getFirstParagraph().subscribe({
           next: (data)=> this.firstParagraph=data,
-          error: (er)=> {this.mainLine='Error from server';
+          error: (er)=> {this.firstParagraph ='Error from server';
           console.log('First paragraph error '+er)}
       });
   }
+
+  getSideParagraph(){
+
+    return this.service.getSideParagraph().subscribe({
+
+      next: (data) => this.sideParagraph=data,
+      error: (er) => { this.sideParagraph='Server error';
+                      console.log('side paragraph '+er);}          
+
+    });
+  }
+
+  ngOnDestroy(): void{
+
+    this.getBackgroundImageLine().unsubscribe();
+    this.getFirstParagraph().unsubscribe();
+    this.getSideParagraph().unsubscribe();
+
+  }
+
 
 }

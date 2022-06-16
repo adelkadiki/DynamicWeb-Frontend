@@ -23,8 +23,8 @@ export class MainService {
 
   }
 
-  getMainLine(): Observable<any>{
-    return this.http.get(this.URL+'getLineOne', {responseType: 'text'});
+  getBackgroundImageLine(): Observable<any>{
+    return this.http.get(this.URL+'getBackgroundImageHeadline', {responseType: 'text'});
     
   }
 
@@ -33,6 +33,10 @@ export class MainService {
      return this.http.get(this.URL+'getFirstParagraph', {responseType: 'text'});
   }
 
+
+  getSideParagraph():Observable<any>{
+    return this.http.get(this.URL+'getSideParagraph', {responseType: 'text'});
+  }
 
 
 }
