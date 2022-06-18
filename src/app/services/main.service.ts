@@ -17,10 +17,20 @@ export class MainService {
   private menu = new BehaviorSubject<boolean>(false);
   status = this.menu.asObservable();
 
+  private frame = new BehaviorSubject<boolean>(true);
+  fstatus = this.frame.asObservable();
+
+  updateFrame(fstatus:boolean){
+    this.frame.next(fstatus);
+  }
+
   updateMenu(status: boolean){
 
     this.menu.next(status);
+  }
 
+  login():Observable{
+    
   }
 
   getBackgroundImageLine(): Observable<any>{

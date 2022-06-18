@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MainService } from 'src/app/services/main.service';
 
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,12 +10,19 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class HeaderComponent implements OnInit {
 
-
+  display:boolean=false;
   constructor(private service:MainService) { }
 
   status:boolean  = false;
+  show:boolean=true;  
 
   ngOnInit(): void {
+
+    this.service.fstatus.subscribe(data =>{
+      this.show = data;
+      console.log('fstatus from header=>'+this.show );
+    });
+
   }
 
 
