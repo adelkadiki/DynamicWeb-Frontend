@@ -10,6 +10,20 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import {MatInputModule} from '@angular/material/input';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './guards/auth.guard';
+import { MainService } from './services/main.service';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { ErrorComponent } from './components/Error/ErrorComponent';
+import { PanelComponent } from './components/panel/panel.component';
+
+
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -17,7 +31,9 @@ import {MatInputModule} from '@angular/material/input';
     MainComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +42,20 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatTableModule,
     MatInputModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatButtonModule, 
+    ReactiveFormsModule,
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8000'],
+        disallowedRoutes: []
+      }
+    })
   ],
-  providers: [],
+  providers: [MainService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

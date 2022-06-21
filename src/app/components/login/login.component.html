@@ -1,20 +1,31 @@
 <div class="container">
 
-<form action="">
+  <span>{{errorMsg}}</span>
+<br>
+<form [formGroup]="loginForm">
 
 
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput >
+        <input matInput name="name" formControlName="name" (keyup)="errorRemove()" > 
       </mat-form-field>
+      <br>
+      <span *ngIf="submitted && loginForm.hasError('required', 'name')">
+         Name is required
+    </span>
 <br>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput >
+        <input matInput  type="password" name="password" formControlName="password" (keyup)="errorRemove()">
       </mat-form-field>
+      <br>
+      <span *ngIf="submitted && loginForm.hasError('required', 'password')">
+        Password name is required
+    </span>
+<br>
 <br>
       
-<button>click</button>
+<button type="button" mat-raised-button color="primary" (click)="formSubmit()">click</button>
 
 </form>
 
