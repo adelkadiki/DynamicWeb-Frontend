@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BgilComponent } from './components/bgil/bgil.component';
 import { ErrorComponent } from './components/Error/ErrorComponent';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { BgiComponent } from './components/bgi/bgi.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
 
   children:[ 
 
-    {path:'error', component:ErrorComponent}
+    {path:'bgil', component:BgilComponent},
+    {path:'bgi', component:BgiComponent}
    ]
 
 },

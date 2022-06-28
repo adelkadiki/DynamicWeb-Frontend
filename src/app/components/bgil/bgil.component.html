@@ -1,0 +1,39 @@
+<div class="container">
+
+    <h3>Background Image Line</h3>    
+
+    <span *ngIf="confirm && form" >
+
+        <h3 class="alert alert-success" role="alert">The line was updated successfuly</h3>
+
+    </span>
+
+      <span *ngIf="!confirm && form">
+
+        <h3 class="alert alert-danger" role="alert">Server error</h3>
+      
+    </span> 
+
+    <form [formGroup]="lineForm">
+
+    <div class="form-group">   
+           
+    
+            <div class="row">
+        <input type="text" class="form-control" formControlName="line" 
+        name="line" (change)="removeConfirm($event)">
+             </div>
+             
+             <span *ngIf="submitted && lineForm.hasError('required', 'line')">
+                Line is required
+           </span>
+           <br>
+             
+        <button class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
+               
+    </div>   
+
+    </form>
+    
+    
+</div>

@@ -2,6 +2,12 @@
 
   <span>{{errorMsg}}</span>
 <br>
+
+<span *ngIf="submitted">
+<mat-spinner></mat-spinner>
+</span>
+
+<br>
 <form [formGroup]="loginForm">
 
 
@@ -25,7 +31,7 @@
 <br>
 <br>
       
-<button type="button" mat-raised-button color="primary" (click)="formSubmit()">click</button>
+<button type="button" mat-raised-button color="primary" (click)="formSubmit()">Submit</button>
 
 </form>
 

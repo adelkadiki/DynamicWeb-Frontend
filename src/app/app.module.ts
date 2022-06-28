@@ -18,7 +18,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { ErrorComponent } from './components/Error/ErrorComponent';
 import { PanelComponent } from './components/panel/panel.component';
-
+import { BgilComponent } from './components/bgil/bgil.component';
+import {AuthInterceptorProvider} from './interceptors/http-request.interceptor';
+import { BgiComponent } from './components/bgi/bgi.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 export function tokenGetter() {
@@ -33,7 +36,10 @@ export function tokenGetter() {
     FooterComponent,
     LoginComponent,
     ErrorComponent,
-    PanelComponent
+    PanelComponent,
+    BgilComponent,
+    BgiComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,7 @@ export function tokenGetter() {
     MatButtonModule, 
     ReactiveFormsModule,
     FormsModule,
+    MatProgressSpinnerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -55,7 +62,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [MainService, AuthGuard],
+  providers: [MainService, AuthGuard, AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

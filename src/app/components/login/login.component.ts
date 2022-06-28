@@ -42,9 +42,11 @@ export class LoginComponent implements OnInit {
    
     this.submitted=true;
     
+
+
     if(!this.loginForm.hasError('required', 'username') && !this.loginForm.hasError('required', 'password')){
 
-      //console.log(this.loginForm.value);
+      
       this.service.login(this.loginForm.value).subscribe({
 
         next: (data)=> {this.router.navigate(['panel'])},
@@ -64,19 +66,20 @@ export class LoginComponent implements OnInit {
      this.errorMsg='';
   }
 
-  login(){
+  // login(){
 
-    this.service.login(this.loginForm.value)
-    .subscribe({
-        next: (data) => console.log('seccessful login'),
-        error: (e) => console.log(e)  
-    });
+  //   this.service.login(this.loginForm.value)
+  //   .subscribe({
+  //       next: (data) => console.log('seccessful login'),
+  //       error: (e) => console.log(e)  
+  //   });
 
-  }
+  // }
 
-  loginSubmit(){
 
-  }
+  // loginSubmit(){
+
+  // }
 
 
   updateFrameStatus(){

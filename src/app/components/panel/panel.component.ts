@@ -25,8 +25,12 @@ export class PanelComponent implements OnInit {
     this.service.updateFrame(this.show);
   }
 
-  linkToPage(){
-    this.router.navigate(['error'], {relativeTo:this.route});
+  backgroundLine(){
+    this.router.navigate(['bgil'], {relativeTo:this.route});
+  }
+
+  backgroundImage(){
+    this.router.navigate(['bgi'], {relativeTo:this.route});
   }
 
 }

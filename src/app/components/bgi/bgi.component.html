@@ -1,0 +1,33 @@
+<div class="container">
+
+    <h3>Upload Background Image</h3>
+    
+    <mat-spinner [ngClass]="{'show': submitted == true }"></mat-spinner>
+    
+    <br>
+
+    <span *ngIf="confirm" >
+
+        <h3 class="alert alert-success" role="alert">The image was updated successfuly</h3>
+
+    </span>
+
+    <br>
+    <form [formGroup]="imageForm" [ngClass]="{'hide': submitted === true }">
+
+        <div class="form-group">
+            
+            <br>
+            <input #fileUploader type="file" class="form-control-file" 
+            (change)="fileUploaded($event)" >
+          </div>
+        <br>
+        <span *ngIf="submitted && imageForm.hasError('required', 'bg')">
+            Pleaes choose the image file 
+       </span>
+       <br>
+
+        <button  class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
+    </form>
+
+</div>
