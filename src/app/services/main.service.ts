@@ -100,4 +100,17 @@ export class MainService {
       );
   }
 
+
+  submitLogo(image:File):Observable<any>{
+
+    var formData = new FormData();
+    formData.append("photo", image);
+    
+    return this.http.post(this.URL+'logo', formData, {responseType: 'text'})
+    .pipe(
+      catchError((error:HttpErrorResponse)=>{ 
+        throw new Error("Logo uploading error = "+error.message); })
+    );
+}
+
 }

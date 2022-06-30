@@ -21,11 +21,11 @@
     
             <div class="row">
         <input type="text" class="form-control" formControlName="line" 
-        name="line" (change)="removeConfirm($event)">
+        name="line" (change)="removeConfirm()">
              </div>
              
              <span *ngIf="submitted && lineForm.hasError('required', 'line')">
-                Line is required
+                Please type the line
            </span>
            <br>
              

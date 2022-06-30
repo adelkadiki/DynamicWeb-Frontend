@@ -1,8 +1,8 @@
 <div class="container">
 
-    <h3>Upload Background Image</h3>
+    <h1>Upload Background Image</h1>
     
-    <mat-spinner [ngClass]="{'show': submitted == true }"></mat-spinner>
+    <mat-spinner [ngClass]="{'show': submitted == true && !imageForm.hasError('required', 'bg')}"></mat-spinner>
     
     <br>
 
@@ -12,8 +12,14 @@
 
     </span>
 
+    <span *ngIf="errMsg" >
+
+        <h3 class="alert alert-danger" role="alert">Image file should be jpg, png, jpeg</h3>
+
+    </span>
+
     <br>
-    <form [formGroup]="imageForm" [ngClass]="{'hide': submitted === true }">
+    <form [formGroup]="imageForm" [ngClass]="{'hide': submitted === true && !imageForm.hasError('required', 'bg')}">
 
         <div class="form-group">
             

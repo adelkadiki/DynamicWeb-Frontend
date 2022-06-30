@@ -33,4 +33,8 @@ export class PanelComponent implements OnInit {
     this.router.navigate(['bgi'], {relativeTo:this.route});
   }
 
+  logo(){
+    this.router.navigate(['logo'], {relativeTo:this.route});
+  }
+
 }

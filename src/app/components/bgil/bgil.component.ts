@@ -44,7 +44,7 @@ form:boolean=false;
         });
       }
 
-      removeConfirm(event:any){
+      removeConfirm(){
 
         this.confirm=false;
         this.form=false;

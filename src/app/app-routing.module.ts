@@ -7,6 +7,7 @@ import { MainComponent } from './components/main/main.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { AuthGuard } from './guards/auth.guard';
 import { BgiComponent } from './components/bgi/bgi.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   children:[ 
 
     {path:'bgil', component:BgilComponent},
-    {path:'bgi', component:BgiComponent}
+    {path:'bgi', component:BgiComponent},
+    {path:'logo', component:LogoComponent}
    ]
 
 },

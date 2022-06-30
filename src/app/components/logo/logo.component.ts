@@ -4,13 +4,13 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ViewChild } from '@angular/core';
 
 @Component({
-    selector: 'app-bgi',
-    templateUrl: './bgi.component.html',
-    styleUrls: ['./bgi.component.css']
+    selector: 'app-logo',
+    templateUrl: './logo.component.html',
+    styleUrls: ['./logo.component.css']
   })
 
 
-export class BgiComponent implements OnInit {
+export class LogoComponent implements OnInit {
     
   @ViewChild('fileUploader')
   fileUpload: ElementRef;
@@ -44,7 +44,7 @@ form:boolean=false;
 
         this.imageForm = this.formBuilder.group({
     
-            bg : ['' , Validators.required]
+            photo : ['' , Validators.required]
             
             
         });
@@ -63,8 +63,8 @@ form:boolean=false;
 
              if(ext === 'jpg' || ext === 'png' || ext === 'jpeg'){
 
-                 this.imageForm.patchValue({ bg : this.file});
-                 this.imageForm.get('bg')?.updateValueAndValidity();
+                 this.imageForm.patchValue({ photo : this.file});
+                 this.imageForm.get('photo')?.updateValueAndValidity();
              
                 } else {
 
@@ -87,10 +87,10 @@ form:boolean=false;
 
         this.submitted=true;
 
-        if(!this.imageForm.hasError('required', 'bg')){
+        if(!this.imageForm.hasError('required', 'photo')){
 
                 
-                this.service.submitBackgroundImage(this.imageForm.value.bg).subscribe({
+                this.service.submitLogo(this.imageForm.value.photo).subscribe({
 
                     next: (data) => { this.fileUpload.nativeElement.value='' ;
                                     this.confirm=true;},

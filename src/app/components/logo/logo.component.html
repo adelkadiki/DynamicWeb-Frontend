@@ -1,0 +1,39 @@
+<div class="container">
+
+    <h1>Upload Logo</h1>
+    
+    <mat-spinner [ngClass]="{'show': submitted == true && !imageForm.hasError('required', 'photo')}"></mat-spinner>
+    
+    <br>
+
+    <span *ngIf="confirm" >
+
+        <h3 class="alert alert-success" role="alert">Logo was uploaded successfuly</h3>
+
+    </span>
+
+    <span *ngIf="errMsg" >
+
+        <h3 class="alert alert-danger" role="alert">File should be jpg, png, jpeg</h3>
+
+    </span>
+
+    <br>
+    <form [formGroup]="imageForm" [ngClass]="{'hide': submitted === true && !imageForm.hasError('required', 'photo')}">
+
+        <div class="form-group">
+            
+            <br>
+            <input #fileUploader type="file" class="form-control-file" 
+            (change)="fileUploaded($event)" >
+          </div>
+        <br>
+        <span *ngIf="submitted && imageForm.hasError('required', 'photo')">
+            Pleaes choose the logo file to upload
+       </span>
+       <br>
+
+        <button  class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
+    </form>
+
+</div>
