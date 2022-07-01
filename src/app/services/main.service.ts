@@ -113,4 +113,11 @@ export class MainService {
     );
 }
 
+
+logoutSubmit():Observable<any>{
+
+    return this.http.get(this.URL+'logout', {responseType: 'text'});
+ 
+}
+
 }

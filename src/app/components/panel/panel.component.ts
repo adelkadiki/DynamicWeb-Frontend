@@ -37,4 +37,16 @@ export class PanelComponent implements OnInit {
     this.router.navigate(['logo'], {relativeTo:this.route});
   }
 
+  logoutSubmit(){
+
+    this.router.navigate(['home']);
+    this.service.logoutSubmit().subscribe({
+
+      next: (data)=> localStorage.clear() ,
+      error: (er)=> console.log(er)
+
+    });
+
+  }
+
 }

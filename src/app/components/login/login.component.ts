@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { 
     this.formInit();
+    this.counter=0;
   }
 
   formInit(){
@@ -39,27 +40,32 @@ export class LoginComponent implements OnInit {
   }
 
   formSubmit(){
+
+if(this.counter < 3){
    
-    this.submitted=true;
-    
+      this.submitted=true;
 
-
-    if(!this.loginForm.hasError('required', 'username') && !this.loginForm.hasError('required', 'password')){
+          if(!this.loginForm.hasError('required', 'username') && !this.loginForm.hasError('required', 'password')){
 
       
-      this.service.login(this.loginForm.value).subscribe({
+              this.service.login(this.loginForm.value).subscribe({
 
-        next: (data)=> {this.router.navigate(['panel'])},
-        error: (er) => {
-          this.errorMsg = 'Incorrect username or password';
-          this.counter += 1;
+                  next: (data)=> {this.router.navigate(['panel'])},
+                  error: (er) => {
+                  this.errorMsg = 'Incorrect username or password';
+                  this.counter += 1;
         }
 
-    });        
-      this.loginForm.reset();
-      this.submitted=false; 
+            });        
+                this.loginForm.reset();
+                this.submitted=false; 
     }
+  
+  } else {
+
+      this.router.navigate(['error']);
   }
+}
 
   errorRemove(){
 

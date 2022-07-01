@@ -8,6 +8,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { AuthGuard } from './guards/auth.guard';
 import { BgiComponent } from './components/bgi/bgi.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 const routes: Routes = [
@@ -15,13 +16,17 @@ const routes: Routes = [
   
   {path:'home', component:MainComponent},
   {path:'login', component:LoginComponent},
+  {path:'error', component:ErrorComponent},
   {path:'panel', component:PanelComponent, canActivate:[AuthGuard], canActivateChild:[AuthGuard],
 
   children:[ 
 
     {path:'bgil', component:BgilComponent},
     {path:'bgi', component:BgiComponent},
-    {path:'logo', component:LogoComponent}
+    {path:'logo', component:LogoComponent},
+    {path:'logout', component:LogoutComponent},
+    
+    
    ]
 
 },

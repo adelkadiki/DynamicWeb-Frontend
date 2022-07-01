@@ -23,6 +23,7 @@ import {AuthInterceptorProvider} from './interceptors/http-request.interceptor';
 import { BgiComponent } from './components/bgi/bgi.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LogoComponent } from './components/logo/logo.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 export function tokenGetter() {
@@ -40,7 +41,8 @@ export function tokenGetter() {
     PanelComponent,
     BgilComponent,
     BgiComponent,
-    LogoComponent
+    LogoComponent,
+    LogoutComponent
     
   ],
   imports: [

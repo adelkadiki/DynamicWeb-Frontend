@@ -22,3 +22,8 @@ html,body,.container {
     margin-top: 3%;
     height: 100%;
 }
+
+.mat-raised-button{
+
+    margin-bottom: 25px;
+}

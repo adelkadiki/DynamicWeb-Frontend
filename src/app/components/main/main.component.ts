@@ -18,15 +18,23 @@ export class MainComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
 
-    this.service.status.subscribe(data =>{
-
-      this.menuStatus=data;
-    });
+    this.menuUpdate();
+    this.showFrame();
 
     this.getBackgroundImageLine();
     this.getFirstParagraph();
     this.getSideParagraph();
 
+  }
+
+  menuUpdate(){
+     this.service.status.subscribe(data =>{
+       this.menuStatus=data;
+  });
+  }
+
+  showFrame(){
+    this.service.updateFrame(true);
   }
 
   getBackgroundImageLine(){
