@@ -9,7 +9,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { BgiComponent } from './components/bgi/bgi.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { LogoutComponent } from './components/logout/logout.component';
-
+import { FirstParagraphComponent } from './components/FirstParagComponent/firstParagraph.component';
+import { SecondSectionImageComponent } from './components/SecondSectionImage/SecondSectionImage.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 const routes: Routes = [
 
@@ -17,6 +19,7 @@ const routes: Routes = [
   {path:'home', component:MainComponent},
   {path:'login', component:LoginComponent},
   {path:'error', component:ErrorComponent},
+  
   {path:'panel', component:PanelComponent, canActivate:[AuthGuard], canActivateChild:[AuthGuard],
 
   children:[ 
@@ -25,6 +28,9 @@ const routes: Routes = [
     {path:'bgi', component:BgiComponent},
     {path:'logo', component:LogoComponent},
     {path:'logout', component:LogoutComponent},
+    {path:'fparag', component:FirstParagraphComponent},
+    {path:'ssi', component:SecondSectionImageComponent},
+    {path:'product', component:AddProductComponent},
     
     
    ]
@@ -32,6 +38,7 @@ const routes: Routes = [
 },
   
   {path:'', redirectTo:'home', pathMatch:'full'},
+  { path: '**', redirectTo:'home', pathMatch:'full' }
 ];
 
 @NgModule({

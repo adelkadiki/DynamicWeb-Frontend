@@ -1,0 +1,73 @@
+<div class="container">
+
+    <h3>Add product</h3>    
+
+    <span *ngIf="confirm && form" >
+
+        <h3 class="alert alert-success" role="alert">The line was updated successfuly</h3>
+
+    </span>
+
+      <span *ngIf="!confirm && form">
+
+        <h3 class="alert alert-danger" role="alert">Server error</h3>
+      
+    </span> 
+
+    
+    <span *ngIf="errMsg" >
+
+        <h3 class="alert alert-danger" role="alert">File should be jpg, png, jpeg</h3>
+
+    </span>
+
+    <br>
+
+    <form [formGroup]="lineForm">
+
+    <div class="form-group">   
+           
+        <!-- Description -->
+            <div class="row">
+                 <input type="text" class="form-control" formControlName="description" 
+                name="description" (change)="removeConfirm()" placeholder="Description">
+             </div>
+             
+             <span *ngIf="submitted && lineForm.hasError('required', 'description')">
+                Please type the description
+           </span>
+           <br>
+
+           <!-- Price -->
+           <div class="row">
+                 <input type="text" class="form-control" formControlName="price" 
+                 name="price" (change)="removeConfirm()" placeholder="Price">
+            </div>
+
+            <span *ngIf="submitted && lineForm.hasError('required', 'price')">
+                Please type the price
+           </span>
+            <br>
+                 <!-- Image1 -->
+           <div class="row">
+                <div class="form-group form-inline">   
+            <label>Main image</label>
+            <input #fileUploader type="file" class="form-control-file" name="image1"
+            formControlName="image1"  (change)="fileUploaded($event)" >    
+                </div>   
+                <span *ngIf="submitted && lineForm.hasError('required', 'image1')">
+                    Please select the main image
+               </span>
+           </div>
+                 
+                 
+               <br>
+             
+        <button class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
+               
+    </div>   
+
+    </form>
+    
+    
+</div>

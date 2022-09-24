@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
 
-  show:boolean=false;
+  //show:boolean=false;
   submitted:boolean=false;
   loginForm: FormGroup;
   errorMsg:string='';
@@ -20,14 +20,24 @@ export class LoginComponent implements OnInit {
 
   constructor(private service:MainService, private formBuilder:FormBuilder,
     private router:Router) {
-  
-    this.updateFrameStatus();
+    
+      this.updateFrameStatus();
   }
+  
 
   ngOnInit(): void { 
+    this.loginStatus();  
     this.formInit();
     this.counter=0;
   }
+
+
+  loginStatus(){
+    
+    if(this.service.isLoggedin()){
+       this.router.navigate(['panel']);
+    }
+  }  
 
   formInit(){
 
@@ -89,7 +99,7 @@ if(this.counter < 3){
 
 
   updateFrameStatus(){
-    this.service.updateFrame(this.show);
+    this.service.updateFrame(false);
   }
 
 }

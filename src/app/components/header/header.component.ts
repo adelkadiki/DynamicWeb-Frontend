@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(private service:MainService) { }
 
   status:boolean  = false;
-  show:boolean=true;  
+  show:boolean = true;  
 
   ngOnInit(): void {
 

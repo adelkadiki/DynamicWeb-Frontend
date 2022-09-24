@@ -1,0 +1,49 @@
+<div class="container">
+
+    <h3>First Paragraph Text</h3>    
+
+    <span *ngIf="confirm && form" >
+
+        <h3 class="alert alert-success" role="alert">The first headline and paragraph are updated</h3>
+
+    </span>
+
+      <span *ngIf="!confirm && form">
+
+        <h3 class="alert alert-danger" role="alert">Server error</h3>
+      
+    </span> 
+
+    <form [formGroup]="lineForm">
+
+    <div class="form-group">   
+           
+
+        <input type="text" class="form-control" formControlName="headline" 
+        name="headline" (change)="removeConfirm()" placeholder="Headline of first paragraph">
+
+        
+   </div>
+   <br>
+
+   <div class="form-group">
+        <textarea class="form-control" rows="10"
+        formControlName="paragraph" 
+        name="paragraph" (change)="removeConfirm()" placeholder="Paragraph"></textarea>
+   </div>
+        
+             
+             <span *ngIf="submitted && lineForm.hasError('required', 'paragraph')">
+                <h3 class="alert alert-danger" role="alert">Please write the paragraph text</h3>
+           </span>
+           <br>
+             
+        <button class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
+               
+    
+
+    </form>
+    
+    
+</div>
+

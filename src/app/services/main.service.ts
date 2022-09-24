@@ -4,6 +4,8 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, retry } from 'rxjs/operators';
 import { User } from '../Models/User';
+import { Headline } from '../Models/Headline';
+import {Product} from '../Models/Product';
 
 
 
@@ -47,6 +49,10 @@ export class MainService {
       ,catchError((error:HttpErrorResponse)=>{ throw new Error("Login error = "+error.message) })
       
     );
+  }
+
+  isLoggedin(){
+    return localStorage.getItem('access_token') ? true : false;
   }
 
   logout() {
@@ -113,11 +119,58 @@ export class MainService {
     );
 }
 
+submitFirstParagraph(paragraph:any):Observable<any>{
+
+    return this.http.post(this.URL+'firstPargraph', paragraph, {responseType: 'text'})
+    .pipe(
+      catchError((error:HttpErrorResponse)=>{ 
+        throw new Error("First paragraph error = "+error.message); })
+    );
+}
+
 
 logoutSubmit():Observable<any>{
 
     return this.http.get(this.URL+'logout', {responseType: 'text'});
  
+}
+
+
+getAllHeadlines():Observable<any>{
+
+  return this.http.get(this.URL+'getAllHeadlines');
+
+}
+
+submitSecondSectionImage(image:File):Observable<any>{
+
+  var formData = new FormData();
+  formData.append("sideImage", image);
+  
+
+  return this.http.post(this.URL+'sideImageUploading', formData, {responseType: 'text'})
+  .pipe(
+    catchError((error:HttpErrorResponse)=>{ 
+      throw new Error("Side image uploading error = "+error.message); })
+  );
+}
+
+submitProduct(product:Product):Observable<any>{
+
+  var formData = new FormData();
+  formData.append("description",product.P_description);
+  formData.append("price", product.P_price);
+  formData.append("image1", product.P_image1);
+
+  return this.http.post(this.URL+'newProduct', formData, {responseType: 'text'})
+  .pipe(
+    catchError((error:HttpErrorResponse)=>{ 
+      throw new Error("Side image uploading error = "+error.message); })
+  );
+
+ 
+
+  
 }
 
 }

@@ -23,14 +23,16 @@
 
         <div class="form-group">
             
-            <br>
+         <br>
             <input #fileUploader type="file" class="form-control-file" 
             (change)="fileUploaded($event)" >
           </div>
+        
         <br>
         <span *ngIf="submitted && imageForm.hasError('required', 'photo')">
-            Pleaes choose the logo file to upload
+            Please choose the logo file to upload
        </span>
+      
        <br>
 
         <button  class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>

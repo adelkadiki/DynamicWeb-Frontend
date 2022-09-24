@@ -24,7 +24,9 @@ import { BgiComponent } from './components/bgi/bgi.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LogoComponent } from './components/logo/logo.component';
 import { LogoutComponent } from './components/logout/logout.component';
-
+import { FirstParagraphComponent } from './components/FirstParagComponent/firstParagraph.component';
+import { SecondSectionImageComponent } from './components/SecondSectionImage/SecondSectionImage.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -42,7 +44,10 @@ export function tokenGetter() {
     BgilComponent,
     BgiComponent,
     LogoComponent,
-    LogoutComponent
+    LogoutComponent,
+    FirstParagraphComponent,
+    SecondSectionImageComponent,
+    AddProductComponent
     
   ],
   imports: [

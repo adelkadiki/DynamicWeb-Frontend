@@ -1,0 +1,39 @@
+<div class="container">
+
+    <h1>Upload Second Section Image</h1>
+    
+    <mat-spinner [ngClass]="{'show': submitted == true && !imageForm.hasError('required', 'sideImage')}"></mat-spinner>
+    
+    <br>
+
+    <span *ngIf="confirm" >
+
+        <h3 class="alert alert-success" role="alert">The image was updated successfuly</h3>
+
+    </span>
+
+    <span *ngIf="errMsg" >
+
+        <h3 class="alert alert-danger" role="alert">Image file should be jpg, png, jpeg</h3>
+
+    </span>
+
+    <br>
+    <form [formGroup]="imageForm" [ngClass]="{'hide': submitted === true && !imageForm.hasError('required', 'sideImage')}">
+
+        <div class="form-group">
+            
+            <br>
+            <input #fileUploader type="file" class="form-control-file" 
+            (change)="fileUploaded($event)" >
+          </div>
+        <br>
+        <span *ngIf="submitted && imageForm.hasError('required', 'sideImage')">
+            Pleaes choose the image file 
+       </span>
+       <br>
+
+        <button  class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
+    </form>
+
+</div>

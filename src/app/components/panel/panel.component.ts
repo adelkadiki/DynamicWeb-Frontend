@@ -37,6 +37,18 @@ export class PanelComponent implements OnInit {
     this.router.navigate(['logo'], {relativeTo:this.route});
   }
 
+  firstParagraph(){
+    this.router.navigate(['fparag'] , {relativeTo:this.route});
+  }
+
+  secondSection(){
+    this.router.navigate(['ssi'] , {relativeTo:this.route});
+  }
+
+  addProduct(){
+    this.router.navigate(['product'] , {relativeTo:this.route});
+  }
+
   logoutSubmit(){
 
     this.router.navigate(['home']);
