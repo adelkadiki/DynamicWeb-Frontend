@@ -27,6 +27,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { FirstParagraphComponent } from './components/FirstParagComponent/firstParagraph.component';
 import { SecondSectionImageComponent } from './components/SecondSectionImage/SecondSectionImage.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { ContactComponent } from './components/contact/contact.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -47,7 +49,8 @@ export function tokenGetter() {
     LogoutComponent,
     FirstParagraphComponent,
     SecondSectionImageComponent,
-    AddProductComponent
+    AddProductComponent,
+    ContactComponent
     
   ],
   imports: [

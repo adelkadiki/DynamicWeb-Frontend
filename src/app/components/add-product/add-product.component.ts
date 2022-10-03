@@ -1,20 +1,26 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { MainService } from "src/app/services/main.service";
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { Product } from 'src/app/Models/Product';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit, OnDestroy {
 
   
   @ViewChild('fileUploader')
   fileUpload: ElementRef;
 
+  @ViewChild('fileUploader2')
+  fileUpload2: ElementRef;
+
+ 
+submitProduct: Subscription | undefined;
 show:boolean=false;
 lineForm: FormGroup;
 submitted:boolean=false;
@@ -22,11 +28,20 @@ confirm:boolean=false;
 form:boolean=false;
 errMsg:boolean=false;
 file:any;
+image2:any;
+imgErr:boolean=false;
+files:any=[];
+product:Product;
 
 
     constructor(private service:MainService, private formBuilder:FormBuilder){
         this.updateFrameStatus();
     }
+
+  ngOnDestroy(): void {
+
+      this.submitProduct?.unsubscribe();
+  }
 
     ngOnInit(): void {
         
@@ -45,7 +60,8 @@ file:any;
     
           description : ['', Validators.required],
           price : ['', Validators.required],
-          image1 : [null, Validators.required]
+          // image1 : [null, Validators.required],
+          // image2 : [null]
             
             
         });
@@ -59,52 +75,103 @@ file:any;
       }
 
       fileUploaded(event:any){
+   
 
         this.confirm = false;
         this.errMsg = false;
         this.submitted = false;
+        this.imgErr = false;
 
         if (event.target.files.length > 0) {
           
           this.file = event.target.files[0];
+        
           var ext = this.file.name.split('.').pop().toLowerCase();
 
              if(ext === 'jpg' || ext === 'png' || ext === 'jpeg'){
-
-                 this.lineForm.patchValue({ photo : this.file});
-                 this.lineForm.get('photo')?.updateValueAndValidity();
-             
-                } else {
-
-                  this.lineForm.reset();
+                
+                            
+                }else {
                   this.fileUpload.nativeElement.value=null;
                   this.errMsg = true;
-
-                }    
-           
-        }
+                }     
+            }
 
         }
+
+        // Image2 validation 
+
+        fileUploaded2(event:any){
+
+          this.confirm = false;
+          this.errMsg = false;
+          this.submitted = false;
+          this.imgErr = false;
+  
+          if (event.target.files.length > 0) {
+            
+            this.image2 = event.target.files[0];
+            var ext = this.image2.name.split('.').pop().toLowerCase();
+  
+               if(ext === 'jpg' || ext === 'png' || ext === 'jpeg'){
+  
+                   this.files.push(this.image2);
+               
+                  } else {
+  
+                   // this.lineForm.reset();
+                    this.fileUpload2.nativeElement.value=null;
+                    this.errMsg = true;
+  
+                  }    
+              }
+  
+          }
     
+          // submit the form
 
       formSubmit(){
 
-        this.submitted=true;
+       
 
+        this.submitted=true;
+       
         if(!this.lineForm.hasError('required', 'description') 
-        && !this.lineForm.hasError('required', 'price') && !this.lineForm.hasError('required', 'image1')){
+        && !this.lineForm.hasError('required', 'price') ){
+
+          if(this.fileUpload.nativeElement.value ===''){
+              this.imgErr=true;
+              return;
+          }
+
 
              var des = this.lineForm.value.description;
              var price = this.lineForm.value.price;
-             var image1 = this.file;
-             var product = new Product(des, price, image1);
+           
+             var imag1 = this.file;
+             var imag2 = this.files.shift();
+             if(!imag2)
+             imag2='';
+
+
+            //  var imag2 = this.files.shift();
+           
+            //  if(!imag2) 
+           
+            //  imag2 = '';
+             
+            var product = new Product(des, price, imag1, imag2);
             
             
-             this.service.submitProduct(product).subscribe({
+          this.submitProduct = this.service.submitProduct(product).subscribe({
               
                     next: (data) => {this.confirm = true; 
                                     this.form = true;
-                                    this.lineForm.reset(); },
+                                    this.lineForm.reset(); 
+                                    this.fileUpload.nativeElement.value = '';
+                                    this.fileUpload2.nativeElement.value = '';
+                                    imag2='';
+                                  this.image2=''},
                     error: (er) => {this.confirm = false;
                                     this.form = true;}
                });

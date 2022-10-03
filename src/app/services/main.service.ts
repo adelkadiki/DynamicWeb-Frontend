@@ -157,15 +157,20 @@ submitSecondSectionImage(image:File):Observable<any>{
 
 submitProduct(product:Product):Observable<any>{
 
+  // console.log(product.P_image1);
+  //console.log(product.P_image2);
+
   var formData = new FormData();
   formData.append("description",product.P_description);
   formData.append("price", product.P_price);
   formData.append("image1", product.P_image1);
+  if(product.P_image2)
+  formData.append("image2", product.P_image2);
 
   return this.http.post(this.URL+'newProduct', formData, {responseType: 'text'})
   .pipe(
     catchError((error:HttpErrorResponse)=>{ 
-      throw new Error("Side image uploading error = "+error.message); })
+      throw new Error("Product upload error = "+error.message); })
   );
 
  

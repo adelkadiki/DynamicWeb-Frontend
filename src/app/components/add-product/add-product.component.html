@@ -4,7 +4,7 @@
 
     <span *ngIf="confirm && form" >
 
-        <h3 class="alert alert-success" role="alert">The line was updated successfuly</h3>
+        <h3 class="alert alert-success" role="alert">The product was successfuly added</h3>
 
     </span>
 
@@ -53,14 +53,30 @@
                 <div class="form-group form-inline">   
             <label>Main image</label>
             <input #fileUploader type="file" class="form-control-file" name="image1"
-            formControlName="image1"  (change)="fileUploaded($event)" >    
+              (change)="fileUploaded($event)" >    
                 </div>   
-                <span *ngIf="submitted && lineForm.hasError('required', 'image1')">
+                <!-- <span *ngIf="submitted && lineForm.hasError('required', 'image1')">
+                    Please select the main image
+               </span> -->
+               <span *ngIf="imgErr">
                     Please select the main image
                </span>
            </div>
-                 
-                 
+
+                
+              <!-- Image2 -->
+              <div class="row">
+                <div class="form-group form-inline">   
+            <label>Second image</label>
+            <input #fileUploader2 type="file" class="form-control-file" name="image2"
+              (change)="fileUploaded2($event)" >    
+                </div>   
+                <!-- <span *ngIf="submitted && lineForm.hasError('required', 'image1')">
+                    Please select the main image
+               </span> -->
+              
+           </div>
+           
                <br>
              
         <button class="btn btn-primary" type="button" (click)="formSubmit()">Submit</button>
